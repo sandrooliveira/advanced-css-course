@@ -6,8 +6,8 @@ https://www.udemy.com/advanced-css-and-sass/.
 
 I am learning nice CSS techniques by making the three projects below:
 
-https://natours.netlify.com/
-http://trillo.netlify.com/
-https://nexter.netlify.com/
+https://natours.netlify.com/ <br />
+http://trillo.netlify.com/ <br />
+https://nexter.netlify.com/ <br />
 
 So this is an repository to store the code of these projects :).
