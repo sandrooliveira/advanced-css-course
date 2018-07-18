@@ -1,0 +1,82 @@
+"Cascade in CSS in the process of combining different stylesheets and resolving
+conflicts between different CSS rules and declarations, when more than one 
+rule applies to a certain element".
+
+CSS can be retrieved from different sources
+
+1- Author
+  The developer who changes the style via CSS file.
+
+2- User 
+  Example: When the user changes the font-size in the browser
+
+3- Browser(user agent)
+  Default declaration by the browse (e.g Links are by default blue and underlined).
+
+The Cascade styles is applied according to:
+Importance                          - Specificity                            - Source Order
+1 User!important                    1 Inline Styles
+2 Author!important                  2 IDs
+3 Author declaration                3 Classes, pseudo-classes, attribute
+4 User declaration                  4 Elements, pseudo-elements
+5 Default browser declarations
+
+If there is conflicting declarations with the same importance (it normally happen with the author 
+declaration), we need to calculate the specifity of it.
+
+So how to calculate Selector Specificities?
+It is calculated by increasing the ocurrency of the specifity categories described above.
+
+E.x:
+Inline, IDs, classes, elements
+
+(0, 0, 1, 0)
+.button {
+   background:red;
+}
+
+(0, 1, 2, 2)
+nav#nav div.pull-right .button{
+   background:green;
+}
+
+(0, 0, 0, 1)
+a{
+    background:blue;
+}
+
+(0, 1, 2, 1)
+#nav a.button:hover{
+    background:pink;
+}
+P.S. pseudo classes counts as classes on the specifity calculation.
+
+To read the numbers, we start reading from left to right, if the first number is 1, it wins against
+all the others and so on...
+
+In the case above, the background element to be applied will be green, as it is the most specific  
+selector.
+
+In the end, if there is two selectors with the same specifity, the last one declared is applied.
+(SOURCE ORDER).
+
+*** Important to remember ***
+
+"CSS declaration marked with !important have highest priority. But we should use it as a last
+resource, in order to keep our code more maintainable. It can solve the problem in the short
+term, but may cause more problems in the future. Please use the correct specificity instead"
+
+"Inline styles have the highest priority, but it is not a good practice to use it."
+
+"A Selector that contains 1 id is more specific than another that have 100000 classes."
+
+"A Selector that contains 1 class is more specific than another that have 100000 elements."
+
+"The universal selector * has not specificity (0, 0, 0, 0)."
+
+"Relay more in specificity than the order of selectors, so that if you need to re-arrange the file
+you will not break the css".
+
+"Just relay on the order, when using a third party style, like bootstrap, so it is important to load
+your css last".
+
